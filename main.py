@@ -57,27 +57,36 @@ def main():
                         soldier_row, soldier_col = soldier.move_soldier(soldier_row, soldier_col, "left")
                     elif event.key == pygame.K_RIGHT:
                         soldier_row, soldier_col = soldier.move_soldier(soldier_row, soldier_col, "right")
-        if mines_visible:
+            if mines_visible:
 
-            current_time = pygame.time.get_ticks()
+                current_time = pygame.time.get_ticks()
 
-            elapsed_time = (current_time- reveal_start_time)
-            if elapsed_time >= consts.MINE_REVEAL_TIME:
-                mines_visible = False
-            if game_result is None:
-                soldier_legs=soldier.create_soldier_legs(soldier_row,soldier_col)
-                if game_field.leg_touches_mines(mines,soldier_legs):
-                    game_result="lose"
-                    result_start_time=pygame.time.get_ticks()
-                else:
-                    soldier_body=soldier.create_soldier_body(soldier_row,soldier_col)
-                    if game_field.body_touches_flag(flag_indexes,soldier_body):
-                        game_result="win"
+                elapsed_time = (current_time- reveal_start_time)
+                if elapsed_time >= consts.MINE_REVEAL_TIME:
+                    mines_visible = False
+                if game_result is None:
+                    soldier_legs=soldier.create_soldier_legs(soldier_row,soldier_col)
+                    if game_field.leg_touches_mines(mines,soldier_legs):
+                        game_result="lose"
                         result_start_time=pygame.time.get_ticks()
-        screen.fill_screen(window)
-        # if mines_visible:
-        #     screen.draw_grid(window)
-        #     screen.draw_mines(window,mines)
+                    else:
+                        soldier_body=soldier.create_soldier_body(soldier_row,soldier_col)
+                        if game_field.body_touches_flag(flag_indexes,soldier_body):
+                            game_result="win"
+                            result_start_time=pygame.time.get_ticks()
+        window.fill(consts.GREEN)
+        pygame.display.flip()
+        if mines_visible:
+            screen.draw_grid(window)
+            screen.draw_mines(window,mines)
+        else:
+            screen.draw_bushes(window,bushes)
+            screen.draw_flag(window)
+           #THE GAME DOES WORK BUT THE GRAPHICS DONT!
+
+
+
+
 
 
 
