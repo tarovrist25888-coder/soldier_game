@@ -14,12 +14,13 @@ screen = pygame.display.set_mode(
 pygame.display.set_caption('SOLDIER GAME')
 
 soldier = pygame.image.load("bin\\soldier.png").convert()
-
+soldier_resized=pygame.transform.scale(soldier,(TILE_SIZE*2,TILE_SIZE*4))
 flag = pygame.image.load("bin\\flag.png").convert()
-
+flag_resized=pygame.transform.scale(flag,(TILE_SIZE*4,TILE_SIZE*3))
 grass = pygame.image.load("bin\\grass.png").convert()
-
+grass_resized=pygame.transform.scale(grass,(TILE_SIZE,TILE_SIZE))
 mine = pygame.image.load("bin\\mine.png").convert()
+mine_resized=pygame.transform.scale(mine,(TILE_SIZE*3,TILE_SIZE))
 
 
 def fill_screen():
